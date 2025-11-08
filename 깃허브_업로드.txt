@@ -1,0 +1,64 @@
+(ai) C:\LLM\ws_python>cd langchain
+
+(ai) C:\LLM\ws_python\langchain>cd poem
+
+- 로컬 저정소 초기화 
+(ai) C:\LLM\ws_python\langchain\poem>git init
+Initialized empty Git repository in C:/LLM/ws_python/langchain/poem/.git/
+
+- 로컬 저장소에 파일 저장
+(ai) C:\LLM\ws_python\langchain\poem>git add main.py requirements.txt
+warning: in the working copy of 'main.py', LF will be replaced by CRLF the next time Git touches it
+
+ -  본인 깃허브 계정 및 이메일 등록
+(ai) C:\LLM\ws_python\langchain\poem>git config --global user.name "깃허브 계정"
+
+(ai) C:\LLM\ws_python\langchain\poem>git config --global user.email "깃허브 이메일"
+ 
+ - 로컬 저장소에 커밋
+(ai) C:\LLM\ws_python\langchain\poem>git commit -m "Add main.py requirements.txt"
+[main (root-commit) 3e50127] Add main.py requirements.txt
+ 2 files changed, 49 insertions(+)
+ create mode 100644 main.py
+ create mode 100644 requirements.txt
+
+ - 원격저장소 주소 연결(github)
+(ai) C:\LLM\ws_python\langchain\poem>git remote set-url origin 저장소 주소
+
+ - 원격저장소 branch 연결(main/master)
+(ai) C:\LLM\ws_python\langchain\poem>git branch -M main
+
+ - 원격저장소의 브런치로 소스 업로드(깃허브 브라우저에서 인증)
+(ai) C:\LLM\ws_python\langchain\poem>git push -u origin main
+info: please complete authentication in your browser...
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 844 bytes | 844.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/lectureblue/ai-poet.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+
+- 참고: Permission to .....denied 오류 해결
+(ai) G:\llm\ws_python\langchain_ex\poem>git push -u origin main
+remote: Permission to nosqljava/ai-poem.git denied to lectureblue
+fatal: unable to access 'https://github.com/nosqljava/ai-poem.git/': The requested URL returned error: 403
+
+※ 해결 방법
+1. Github에서 personal access token을 생성하는데 이 때 repo를 꼭! 체크하여 생성해야함
+github page > profile > settings > Developer setting > personal access token > token(classic) > generate new token 
+2. 인증정보 포함하여 원격저장소 URL 변경
+git remote set-url origin https://<your_personal_access_token>@github.com/<유저네임>/<레포지토리 이름>
+
+
+- 참고: 파일 수정해서 다시 올리기 
+(ai) C:\LLM\ws_python\langchain\poem>git add requirements.txt
+(ai) C:\LLM\ws_python\langchain\poem>git commit -m "Update requirements.txt: fixed layout issue"
+(ai) C:\LLM\ws_python\langchain\poem>git push origin main
+
+- 참고: 충돌시
+(ai) C:\LLM\ws_python\langchain\poem>git pull --rebase origin main
+(ai) C:\LLM\ws_python\langchain\poem>git push origin main
